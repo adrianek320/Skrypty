@@ -1,0 +1,10 @@
+on fishing:
+	if fishing state is not CAUGHT_FISH:
+		stop
+	chance of 50%:
+		drop 10 diamond at player
+		send "&aWylowiles &bdiamenty&a!" to player
+		stop
+	chance of 50%:
+		drop 10 dirt at player
+		send "&aWylowiles &6dirta&a!" to player

@@ -1,0 +1,52 @@
+variables:
+    {tak} = 0
+    {nie} = 0
+at 19:00:
+    loop all players:
+        delete {vote.%loop-player%}
+    set {vote} to true
+    set {tak} to 0
+    set {nie} to 0
+    broadcast "&6Nadchodzi noc zaglosujcie na '/dzien' zeby byl dzien lub '/noc' zeby byla dalej noc"
+    wait 30 seconds
+    broadcast "Glosy na dzien: %{tak}%"
+    broadcast "Glosy na noc: %{nie}%"
+    if {tak} = {nie}:
+        chance of 50%:
+            set time to 5:00
+            broadcast "&c* &6Nastopilo losowanie."
+        clear {vote}
+        stop
+    if {tak} is larger than {nie}:
+        set time to 5:00
+        broadcast "&c* &6Nadszedl dzien."
+        clear {vote}
+        stop
+    if {nie} is larger than {tak}:
+        broadcast "&c* Niech nastapi ciemnosc."
+        clear {vote}
+        stop
+command /dzien:
+    trigger:
+        if {vote} is set:
+            if {vote.%player%} is not set:
+                set {vote.%player%} to true
+                add 1 to {tak}
+                send "&6Zaglosowales na dzien."
+                stop
+            send "&c* &7Juz glosowales."
+            stop
+        send "&c* &7Nie ma glosowania."
+        stop
+command /noc:
+    trigger:
+        if {vote} is set:
+            if {vote.%player%} is not set:
+                set {vote.%player%} to true
+                add 1 to {nie}
+                send "&6Zaglosowales na noc."
+                stop
+            send "&c* &7Juz glosowales."
+            stop
+        send "&c* &7Nie ma glosowania."
+        stop
