@@ -1,0 +1,14 @@
+options:
+    top: &7&m[---[&4&l&mRules&7&m]---]
+ 
+command /rules:
+    trigger:
+        send "{@top}"
+        send "&aNo Grief"
+        send "&aNo Steal"
+        send "&aNo Advert"
+        send "&aNo Mod"
+        send "&aNo Hack Client"
+        send "&aNo Spamming"
+        send "{@top}"
+        send "%coloured player's prefix%&r%player% &aIt all rules available in this server!"
